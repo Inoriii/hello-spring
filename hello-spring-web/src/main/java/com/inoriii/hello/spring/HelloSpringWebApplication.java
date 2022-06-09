@@ -1,9 +1,10 @@
-package com.inoriii.hello.spring.web;
+package com.inoriii.hello.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class HelloSpringWebApplication {
 
     public static void main(String[] args) {
