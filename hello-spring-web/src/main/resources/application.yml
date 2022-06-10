@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  servlet:
+    context-path: /base
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.inoriii.hello.spring.model.entity
