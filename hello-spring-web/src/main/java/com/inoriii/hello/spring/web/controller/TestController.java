@@ -1,11 +1,9 @@
 package com.inoriii.hello.spring.web.controller;
 
 import com.inoriii.hello.spring.api.TestService;
+import com.inoriii.hello.spring.model.dto.AddUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author sakura
@@ -19,9 +17,15 @@ public class TestController {
     private TestService testService;
 
     @GetMapping("/print/message")
-    public String addUser(@RequestParam String message) {
-        testService.addUser(message);
+    public String printMessage(@RequestParam String message) {
+        testService.printMessage(message);
         return "OK";
+    }
+
+    @PostMapping("/add/test-user")
+    public String addUser(@RequestBody AddUserDTO addUserDTO) {
+        testService.addUser(addUserDTO);
+        return addUserDTO.toString();
     }
 }
 

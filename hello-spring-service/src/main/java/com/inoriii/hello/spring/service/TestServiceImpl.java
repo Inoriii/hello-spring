@@ -2,6 +2,11 @@ package com.inoriii.hello.spring.service;
 
 import com.inoriii.hello.spring.api.TestService;
 import com.inoriii.hello.spring.common.utils.TestUtil;
+import com.inoriii.hello.spring.dao.mapper.UserTestMapper;
+import com.inoriii.hello.spring.model.dto.AddUserDTO;
+import com.inoriii.hello.spring.model.entity.UserTest;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -12,10 +17,19 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TestServiceImpl implements TestService {
+    @Autowired
+    private UserTestMapper userTestMapper;
 
     @Override
-    public void addUser(String message) {
+    public void printMessage(String message) {
         System.out.println("Received message : " + message);
-        System.out.println(TestUtil.addTest(message));
+        System.out.println(TestUtil.addTestString(message));
+    }
+
+    @Override
+    public void addUser(AddUserDTO addUserDTO) {
+        UserTest userTest = new UserTest();
+        BeanUtils.copyProperties(addUserDTO, userTest);
+        userTestMapper.insertSelective(userTest);
     }
 }

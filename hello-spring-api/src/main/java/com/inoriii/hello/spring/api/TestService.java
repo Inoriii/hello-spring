@@ -1,5 +1,7 @@
 package com.inoriii.hello.spring.api;
 
+import com.inoriii.hello.spring.model.dto.AddUserDTO;
+
 /**
  * @author sakura
  * @date: 2022/6/8 21:38
@@ -7,8 +9,16 @@ package com.inoriii.hello.spring.api;
  */
 public interface TestService {
     /**
+     * 打印message
+     *
      * @param message message
-     *                打印message
      */
-    void addUser(String message);
+    void printMessage(String message);
+
+    /**
+     * 插入测试用户
+     *
+     * @param addUserDTO
+     */
+    void addUser(AddUserDTO addUserDTO);
 }

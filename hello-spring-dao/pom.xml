@@ -12,6 +12,13 @@
     <artifactId>hello-spring-dao</artifactId>
     <dependencies>
         <dependency>
+            <artifactId>hello-spring-model</artifactId>
+            <groupId>com.inoriii</groupId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>

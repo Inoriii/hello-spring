@@ -6,7 +6,7 @@ package com.inoriii.hello.spring.common.utils;
  * @description:
  */
 public class TestUtil {
-    public static String addTest(String message) {
+    public static String addTestString(String message) {
         return "TestUtil add : " + message;
     }
 }
