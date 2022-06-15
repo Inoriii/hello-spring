@@ -10,3 +10,8 @@ server:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.inoriii.hello.spring.model.entity
+
+#定义日志配置文件路径
+logging:
+  config:
+    classpath:./logback/logback-init.xml
