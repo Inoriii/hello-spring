@@ -27,5 +27,11 @@ public class TestController {
         testService.addUser(addUserDTO);
         return addUserDTO.toString();
     }
+
+    @GetMapping("/error")
+    public int printMessage() {
+        int i = 1, j = 0;
+        return i / j;
+    }
 }
 
