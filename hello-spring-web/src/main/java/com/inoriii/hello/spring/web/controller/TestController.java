@@ -2,6 +2,8 @@ package com.inoriii.hello.spring.web.controller;
 
 import com.inoriii.hello.spring.api.TestService;
 import com.inoriii.hello.spring.model.dto.AddUserDTO;
+import com.inoriii.hello.spring.model.vo.RestResult;
+import com.inoriii.hello.spring.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
     @Autowired
     private TestService testService;
+    @Autowired
+    private RedisService redisService;
 
     @GetMapping("/print/message")
     public String printMessage(@RequestParam String message) {
@@ -32,6 +36,12 @@ public class TestController {
     public int printMessage() {
         int i = 1, j = 0;
         return i / j;
+    }
+
+    @GetMapping("/getMemory")
+    public RestResult<Object> getMemory(@RequestParam String key) {
+        Object o = redisService.get(key);
+        return new RestResult<>(o);
     }
 }
 
