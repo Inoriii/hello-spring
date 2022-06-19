@@ -2,9 +2,13 @@ package com.inoriii.hello.spring.web.controller;
 
 import com.inoriii.hello.spring.api.TestService;
 import com.inoriii.hello.spring.model.dto.AddUserDTO;
+import com.inoriii.hello.spring.model.dto.FetchUserDTO;
+import com.inoriii.hello.spring.model.entity.FetchUserVO;
 import com.inoriii.hello.spring.model.vo.RestResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author sakura
@@ -27,6 +31,12 @@ public class TestController {
     public String addUser(@RequestBody AddUserDTO addUserDTO) {
         testService.addUser(addUserDTO);
         return addUserDTO.toString();
+    }
+
+    @GetMapping("/get/test-user")
+    public RestResult<List<FetchUserVO>> getUser(@RequestParam String userName) {
+        List<FetchUserVO> fetchUserVOList = testService.fetchUser(FetchUserDTO.builder().username(userName).build());
+        return new RestResult<>(fetchUserVOList);
     }
 
     @GetMapping("/error")

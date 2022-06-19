@@ -1,6 +1,10 @@
 package com.inoriii.hello.spring.api;
 
 import com.inoriii.hello.spring.model.dto.AddUserDTO;
+import com.inoriii.hello.spring.model.dto.FetchUserDTO;
+import com.inoriii.hello.spring.model.entity.FetchUserVO;
+
+import java.util.List;
 
 /**
  * @author sakura
@@ -21,6 +25,8 @@ public interface TestService {
      * @param addUserDTO
      */
     void addUser(AddUserDTO addUserDTO);
+
+    List<FetchUserVO> fetchUser(FetchUserDTO addFetchUserDTO);
 
     Object getKey(String key);
 }
