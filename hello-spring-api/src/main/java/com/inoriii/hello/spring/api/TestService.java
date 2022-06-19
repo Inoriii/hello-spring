@@ -21,4 +21,6 @@ public interface TestService {
      * @param addUserDTO
      */
     void addUser(AddUserDTO addUserDTO);
+
+    Object getKey(String key);
 }

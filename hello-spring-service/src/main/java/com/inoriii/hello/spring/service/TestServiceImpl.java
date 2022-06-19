@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestServiceImpl implements TestService {
     @Autowired
+    private RedisService redisService;
+    @Autowired
     private UserTestMapper userTestMapper;
 
     @Override
@@ -31,5 +33,10 @@ public class TestServiceImpl implements TestService {
         UserTest userTest = new UserTest();
         BeanUtils.copyProperties(addUserDTO, userTest);
         userTestMapper.insertSelective(userTest);
+    }
+
+    @Override
+    public Object getKey(String key) {
+        return redisService.get(key);
     }
 }
