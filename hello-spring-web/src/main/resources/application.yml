@@ -13,5 +13,4 @@ mybatis:
 
 #定义日志配置文件路径
 logging:
-  config:
-    classpath: logback/logback-init.xml
+  config: classpath:logback/logback-init.xml
