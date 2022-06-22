@@ -12,11 +12,9 @@
 
 6.引入redis
 
-7.mysql多数据源
+7.mysql多数据源,使用德鲁伊数据连接池
 遗留问题
-2.在mapper中指定SQL session factory
 3.动态数据源切换
-4.使用德鲁伊数据连接池
 5.数据库配置主从
 
 8.使用maven-resources-plugin插件将其他模块的配置文件打包到任意模块下；

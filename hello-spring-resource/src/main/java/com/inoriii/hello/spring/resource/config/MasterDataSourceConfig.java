@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 public class MasterDataSourceConfig {
 
     @Bean(name = "masterDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.master")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.master")
     @Primary
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
