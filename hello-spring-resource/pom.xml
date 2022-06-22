@@ -12,6 +12,13 @@
     <artifactId>hello-spring-resource</artifactId>
     <dependencies>
         <dependency>
+            <artifactId>hello-spring-common</artifactId>
+            <groupId>com.inoriii</groupId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>

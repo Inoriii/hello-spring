@@ -26,6 +26,12 @@
             <groupId>com.inoriii</groupId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <artifactId>hello-spring-resource</artifactId>
+            <groupId>com.inoriii</groupId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

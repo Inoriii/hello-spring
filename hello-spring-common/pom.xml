@@ -10,4 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hello-spring-common</artifactId>
+    <dependencies>
+        <dependency>
+            <artifactId>hello-spring-model</artifactId>
+            <groupId>com.inoriii</groupId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    </dependencies>
 </project>
