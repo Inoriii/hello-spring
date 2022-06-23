@@ -1,15 +1,14 @@
 package com.inoriii.hello.spring.resource.config;
 
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.stereotype.Component;
+
 /**
  * @author sakura
  * @date: 2022/6/9 23:10
  * @description:
  */
-//@Component
-//@MapperScan("com.inoriii.hello.spring.dao.mapper")
-
-/**
- * 使用了多数据元配置，则不需要该配置
- */
+@MapperScan(basePackages = {"com.inoriii.hello.spring.dao.mapper"})
+@Component
 public class MyBatisConfig {
 }

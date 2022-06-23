@@ -1,9 +1,10 @@
 package com.inoriii.hello.spring.service;
 
 import com.inoriii.hello.spring.api.TestService;
+import com.inoriii.hello.spring.common.annotation.DataSource;
 import com.inoriii.hello.spring.common.utils.TestUtil;
 import com.inoriii.hello.spring.dao.mapper.UserTestMapper;
-import com.inoriii.hello.spring.dao.slave_mapper.UserTestMapperSlave;
+import com.inoriii.hello.spring.model.constant.enums.DataSourceName;
 import com.inoriii.hello.spring.model.dto.AddUserDTO;
 import com.inoriii.hello.spring.model.dto.FetchUserDTO;
 import com.inoriii.hello.spring.model.entity.FetchUserVO;
@@ -27,8 +28,6 @@ public class TestServiceImpl implements TestService {
     private RedisService redisService;
     @Autowired
     private UserTestMapper userTestMapper;
-    @Autowired
-    private UserTestMapperSlave userTestMapperSlave;
 
     @Override
     public void printMessage(String message) {
@@ -44,8 +43,9 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
+    @DataSource(DataSourceName.MASTER)
     public List<FetchUserVO> fetchUser(FetchUserDTO addFetchUserDTO) {
-        List<UserTest> userTestList = userTestMapperSlave.selectByUserName(addFetchUserDTO.getUsername());
+        List<UserTest> userTestList = userTestMapper.selectByUserName(addFetchUserDTO.getUsername());
         return userTestList.stream().map(
                 userTest -> FetchUserVO.builder().
                         username(userTest.getUsername()).
