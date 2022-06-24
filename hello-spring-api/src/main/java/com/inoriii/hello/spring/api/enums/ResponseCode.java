@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.model.constant.enums;
+package com.inoriii.hello.spring.api.enums;
 
 /**
  * @author sakura
@@ -9,8 +9,7 @@ public enum ResponseCode {
     /**
      * SUCCESS,FAIL
      */
-    SUCCESS(0, "成功"),
-    FAIL(-1, "系统异常");
+    SUCCESS(0, "成功"), FAIL(-1, "系统异常");
 
     private Integer code;
     private String msg;

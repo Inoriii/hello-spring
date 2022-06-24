@@ -1,6 +1,6 @@
-package com.inoriii.hello.spring.model.vo;
+package com.inoriii.hello.spring.api.vo;
 
-import com.inoriii.hello.spring.model.constant.enums.ResponseCode;
+import com.inoriii.hello.spring.api.enums.ResponseCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -28,7 +28,7 @@ public class RestResult<T> {
     }
 
     public RestResult(ResponseCode responseCode, T data) {
-        this(ResponseCode.SUCCESS.getCode(),ResponseCode.SUCCESS.getMsg(), data);
+        this(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMsg(), data);
     }
 
     public RestResult(Integer code, String msg) {

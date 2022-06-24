@@ -1,8 +1,8 @@
 package com.inoriii.hello.spring.web.handler;
 
-import com.inoriii.hello.spring.exception.BusinessException;
-import com.inoriii.hello.spring.model.constant.enums.ResponseCode;
-import com.inoriii.hello.spring.model.vo.RestResult;
+import com.inoriii.hello.spring.api.enums.ResponseCode;
+import com.inoriii.hello.spring.api.vo.RestResult;
+import com.inoriii.hello.spring.common.exception.BusinessException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -50,8 +50,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public RestResult<Object> handleMissingServletRequestParameterException(MethodArgumentNotValidException e,
-                                                                            HttpServletRequest request) {
+    public RestResult<Object> handleMissingServletRequestParameterException(MethodArgumentNotValidException e, HttpServletRequest request) {
         List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
         String message = allErrors.stream().map(s -> s.getDefaultMessage()).collect(Collectors.joining(";"));
         return new RestResult<>(ResponseCode.FAIL.getCode(), message, null);

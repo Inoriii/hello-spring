@@ -12,6 +12,13 @@
     <artifactId>hello-spring-model</artifactId>
     <dependencies>
         <dependency>
+            <artifactId>hello-spring-api</artifactId>
+            <groupId>com.inoriii</groupId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.20</version>

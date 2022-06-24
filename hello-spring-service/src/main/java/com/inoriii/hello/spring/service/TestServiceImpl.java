@@ -1,14 +1,14 @@
 package com.inoriii.hello.spring.service;
 
-import com.inoriii.hello.spring.api.TestService;
+import com.inoriii.hello.spring.api.dto.AddUserDTO;
+import com.inoriii.hello.spring.api.dto.FetchUserDTO;
+import com.inoriii.hello.spring.api.service.TestService;
+import com.inoriii.hello.spring.api.vo.FetchUserVO;
 import com.inoriii.hello.spring.common.annotation.DataSource;
 import com.inoriii.hello.spring.common.utils.TestUtil;
 import com.inoriii.hello.spring.dao.mapper.UserTestMapper;
-import com.inoriii.hello.spring.model.constant.enums.DataSourceName;
-import com.inoriii.hello.spring.model.dto.AddUserDTO;
-import com.inoriii.hello.spring.model.dto.FetchUserDTO;
-import com.inoriii.hello.spring.model.entity.FetchUserVO;
 import com.inoriii.hello.spring.model.entity.UserTest;
+import com.inoriii.hello.spring.model.enums.DataSourceName;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

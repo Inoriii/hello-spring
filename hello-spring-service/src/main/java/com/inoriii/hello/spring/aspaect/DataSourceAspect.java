@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.web.aspect;
+package com.inoriii.hello.spring.aspaect;
 
 import com.inoriii.hello.spring.common.annotation.DataSource;
 import com.inoriii.hello.spring.resource.dynamic.DynamicDataSource;
@@ -32,7 +32,7 @@ public class DataSourceAspect {
         DataSource ds = method.getAnnotation(DataSource.class);
         // 通过判断 DataSource 中的值来判断当前方法应用哪个数据源
         DynamicDataSource.setDataSource(ds.value());
-        System.out.println("当前数据源: " + ds.value());
+        log.info("当前数据源: " + ds.value());
         try {
             return point.proceed();
         } finally {

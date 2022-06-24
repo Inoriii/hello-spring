@@ -1,7 +1,7 @@
-package com.inoriii.hello.spring.exception;
+package com.inoriii.hello.spring.common.exception;
 
 
-import com.inoriii.hello.spring.model.constant.enums.ResponseCode;
+import com.inoriii.hello.spring.api.enums.ResponseCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

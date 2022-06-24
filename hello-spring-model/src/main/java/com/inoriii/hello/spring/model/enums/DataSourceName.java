@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.model.constant.enums;
+package com.inoriii.hello.spring.model.enums;
 
 /**
  * @author sakura

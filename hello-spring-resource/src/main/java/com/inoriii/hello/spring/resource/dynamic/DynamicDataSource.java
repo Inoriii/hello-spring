@@ -1,6 +1,6 @@
 package com.inoriii.hello.spring.resource.dynamic;
 
-import com.inoriii.hello.spring.model.constant.enums.DataSourceName;
+import com.inoriii.hello.spring.model.enums.DataSourceName;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import javax.sql.DataSource;

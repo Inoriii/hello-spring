@@ -1,8 +1,8 @@
-package com.inoriii.hello.spring.api;
+package com.inoriii.hello.spring.api.service;
 
-import com.inoriii.hello.spring.model.dto.AddUserDTO;
-import com.inoriii.hello.spring.model.dto.FetchUserDTO;
-import com.inoriii.hello.spring.model.entity.FetchUserVO;
+import com.inoriii.hello.spring.api.dto.AddUserDTO;
+import com.inoriii.hello.spring.api.dto.FetchUserDTO;
+import com.inoriii.hello.spring.api.vo.FetchUserVO;
 
 import java.util.List;
 

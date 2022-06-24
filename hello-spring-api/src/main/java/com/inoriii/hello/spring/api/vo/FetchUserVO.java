@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.model.dto;
+package com.inoriii.hello.spring.api.vo;
 
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @Builder
-public class FetchUserDTO {
+public class FetchUserVO {
     private String username;
     private Date birthday;
     private String sex;

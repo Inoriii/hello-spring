@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.model.dto;
+package com.inoriii.hello.spring.api.dto;
 
 import lombok.Data;
 

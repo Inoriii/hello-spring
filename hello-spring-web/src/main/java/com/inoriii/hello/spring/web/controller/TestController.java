@@ -1,10 +1,10 @@
 package com.inoriii.hello.spring.web.controller;
 
-import com.inoriii.hello.spring.api.TestService;
-import com.inoriii.hello.spring.model.dto.AddUserDTO;
-import com.inoriii.hello.spring.model.dto.FetchUserDTO;
-import com.inoriii.hello.spring.model.entity.FetchUserVO;
-import com.inoriii.hello.spring.model.vo.RestResult;
+import com.inoriii.hello.spring.api.dto.AddUserDTO;
+import com.inoriii.hello.spring.api.dto.FetchUserDTO;
+import com.inoriii.hello.spring.api.service.TestService;
+import com.inoriii.hello.spring.api.vo.FetchUserVO;
+import com.inoriii.hello.spring.api.vo.RestResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
