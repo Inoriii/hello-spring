@@ -12,11 +12,6 @@
     <artifactId>hello-spring-service</artifactId>
     <dependencies>
         <dependency>
-            <artifactId>hello-spring-api</artifactId>
-            <groupId>com.inoriii</groupId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <artifactId>hello-spring-common</artifactId>
             <groupId>com.inoriii</groupId>
             <version>${project.version}</version>
