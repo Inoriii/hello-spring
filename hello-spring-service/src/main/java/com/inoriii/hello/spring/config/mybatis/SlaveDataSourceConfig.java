@@ -1,21 +1,17 @@
-package com.inoriii.hello.spring.resource.config;
+package com.inoriii.hello.spring.config.mybatis;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
-/**
- * @author sakura
- */
 @Configuration
-public class MasterDataSourceConfig {
+public class SlaveDataSourceConfig {
 
-    @Bean(name = "masterDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.druid.master")
+    @Bean(name = "slaveDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.slave")
     public DataSource dataSource() {
         return DruidDataSourceBuilder.create().build();
     }

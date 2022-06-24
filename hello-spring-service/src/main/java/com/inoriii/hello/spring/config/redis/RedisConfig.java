@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.resource.config;
+package com.inoriii.hello.spring.config.redis;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

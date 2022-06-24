@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.resource.dynamic;
+package com.inoriii.hello.spring.config.mybatis;
 
 import com.inoriii.hello.spring.model.enums.DataSourceName;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;

@@ -25,7 +25,6 @@
         <module>hello-spring-common</module>
         <module>hello-spring-dao</module>
         <module>hello-spring-model</module>
-        <module>hello-spring-resource</module>
         <module>hello-spring-service</module>
         <module>hello-spring-web</module>
     </modules>
@@ -63,6 +62,11 @@
                 <artifactId>hibernate-validator</artifactId>
                 <version>7.0.1.Final</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.76</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -70,11 +74,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.76</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

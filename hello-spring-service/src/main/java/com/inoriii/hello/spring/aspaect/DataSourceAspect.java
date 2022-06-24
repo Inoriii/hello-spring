@@ -1,7 +1,7 @@
 package com.inoriii.hello.spring.aspaect;
 
 import com.inoriii.hello.spring.common.annotation.DataSource;
-import com.inoriii.hello.spring.resource.dynamic.DynamicDataSource;
+import com.inoriii.hello.spring.config.mybatis.DynamicDataSource;
 import lombok.extern.java.Log;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

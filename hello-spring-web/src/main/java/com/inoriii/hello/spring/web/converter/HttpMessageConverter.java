@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.resource.converter;
+package com.inoriii.hello.spring.web.converter;
 
 
 import com.alibaba.fastjson.serializer.SerializerFeature;

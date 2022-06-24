@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.resource.config;
+package com.inoriii.hello.spring.config.mybatis;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Component;

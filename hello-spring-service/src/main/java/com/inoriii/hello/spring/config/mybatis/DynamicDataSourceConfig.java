@@ -1,7 +1,6 @@
-package com.inoriii.hello.spring.resource.config;
+package com.inoriii.hello.spring.config.mybatis;
 
 import com.inoriii.hello.spring.model.enums.DataSourceName;
-import com.inoriii.hello.spring.resource.dynamic.DynamicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

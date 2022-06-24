@@ -15,10 +15,27 @@
             <excludes></excludes>
             <includes>
                 <include>application*.yml</include>
-                <include>logback/*.xml</include>
             </includes>
             <fileMode>0644</fileMode>
             <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <!-- log files -->
+        <fileSet>
+            <directory>${project.parent.basedir}/hello-spring-dao/src/main/resources/mapper</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <fileMode>0644</fileMode>
+            <outputDirectory>mapper</outputDirectory>
+        </fileSet>
+        <!-- logback files -->
+        <fileSet>
+            <directory>${project.parent.basedir}/hello-spring-common/src/main/resources/logback</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <fileMode>0644</fileMode>
+            <outputDirectory>logback</outputDirectory>
         </fileSet>
         <!-- scripts -->
         <fileSet>
@@ -32,11 +49,11 @@
         <!-- executable jar -->
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory>/</outputDirectory>
             <includes>
                 <include>${project.artifactId}-${project.version}.jar</include>
             </includes>
             <fileMode>0755</fileMode>
+            <outputDirectory>/</outputDirectory>
         </fileSet>
     </fileSets>
 
