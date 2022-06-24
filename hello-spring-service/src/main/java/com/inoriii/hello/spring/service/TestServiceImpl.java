@@ -9,10 +9,12 @@ import com.inoriii.hello.spring.common.utils.TestUtil;
 import com.inoriii.hello.spring.dao.mapper.UserTestMapper;
 import com.inoriii.hello.spring.model.entity.UserTest;
 import com.inoriii.hello.spring.model.enums.DataSourceName;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,16 +25,17 @@ import java.util.stream.Collectors;
  * @description:
  */
 @Service
+@Log
 public class TestServiceImpl implements TestService {
     @Autowired
     private RedisService redisService;
-    @Autowired
+    @Resource
     private UserTestMapper userTestMapper;
 
     @Override
     public void printMessage(String message) {
-        System.out.println("Received message : " + message);
-        System.out.println(TestUtil.addTestString(message));
+        log.info("Received message : " + message);
+        log.info(TestUtil.addTestString(message));
     }
 
     @Override
