@@ -36,6 +36,7 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
+    @DataSource(DataSourceName.MASTER)
     public void addUser(AddUserDTO addUserDTO) {
         UserTest userTest = new UserTest();
         BeanUtils.copyProperties(addUserDTO, userTest);
@@ -43,7 +44,7 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    @DataSource(DataSourceName.MASTER)
+    @DataSource(DataSourceName.SLAVE)
     public List<FetchUserVO> fetchUser(FetchUserDTO addFetchUserDTO) {
         List<UserTest> userTestList = userTestMapper.selectByUserName(addFetchUserDTO.getUsername());
         return userTestList.stream().map(

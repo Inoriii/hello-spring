@@ -6,20 +6,17 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
     druid:
       master:
         url: jdbc:mysql://localhost:3306/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false
         username: inoriii
         password: 2014212447
         driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://localhost:3306/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false
       slave:
         url: jdbc:mysql://localhost:3306/hello_spring_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false
         username: inoriii
         password: 2014212447
         driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://localhost:3306/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false
       # 配置初始化大小、最小、最大
       initial-size: 5
       minIdle: 10

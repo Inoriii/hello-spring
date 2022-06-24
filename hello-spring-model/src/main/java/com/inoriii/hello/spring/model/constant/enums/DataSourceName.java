@@ -6,5 +6,12 @@ package com.inoriii.hello.spring.model.constant.enums;
  * @description:
  */
 public enum DataSourceName {
-    MASTER, SLAVE
+    /**
+     * MASTER
+     */
+    MASTER,
+    /**
+     * SLAVE
+     */
+    SLAVE
 }
