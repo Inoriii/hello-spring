@@ -1,6 +1,6 @@
 # hello-spring
 
-1.多模块拆分
+1.多模块拆分,使用maven profile管理多环境
 
 2.引入依赖
 
