@@ -41,6 +41,27 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>application.yml</exclude>
+                    <exclude>application-dev.yml</exclude>
+                    <exclude>application-prod.yml</exclude>
+                    <exclude>application-test.yml</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application.yml</include>
+                    <include>application-${env}.yml</include>
+                </includes>
+                <!--                解析profile中properties，必须设置为true，且必须先排除application.yml再引入application.yml才会解析-->
+                <!--                再idea中切换激活profile，需要reload一下-->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -83,7 +104,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <profileActive>dev</profileActive>
+                <env>dev</env>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -92,13 +113,13 @@
         <profile>
             <id>test</id>
             <properties>
-                <profileActive>test</profileActive>
+                <env>test</env>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
-                <profileActive>prod</profileActive>
+                <env>prod</env>
             </properties>
         </profile>
     </profiles>
