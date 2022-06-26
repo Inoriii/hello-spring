@@ -1,0 +1,1 @@
+java -jar hello-spring-web-0.0.1-SNAPSHOT.jar

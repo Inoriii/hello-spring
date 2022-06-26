@@ -5,8 +5,7 @@
     <formats>
         <format>tar.gz</format>
     </formats>
-    <includeBaseDirectory>false
-    </includeBaseDirectory> <!-- disable the creation of root's distribution dir in the archive -->
+    <includeBaseDirectory>true</includeBaseDirectory>
 
     <fileSets>
         <!-- config files -->
@@ -42,6 +41,7 @@
             <directory>${basedir}/src/main/bin</directory>
             <includes>
                 <include>*.sh</include>
+                <include>*.bat</include>
             </includes>
             <fileMode>0755</fileMode>
             <outputDirectory>/</outputDirectory>
