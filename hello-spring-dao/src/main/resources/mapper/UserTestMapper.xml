@@ -80,7 +80,13 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.inoriii.hello.spring.model.entity.UserTest">
+    <insert id="insertUserDTOList">
+      INSERT INTO user_test (username, birthday, sex, address) VALUES
+      <foreach collection="list" separator="," item="item">
+        (#{item.username},#{item.birthday},#{item.sex},#{item.address})
+      </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.inoriii.hello.spring.model.entity.UserTest">
     update user_test
     <set>
       <if test="username != null">

@@ -47,15 +47,16 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
+    @DataSource(DataSourceName.MASTER)
+    public void addUserList(List<AddUserDTO> addUserDTOList) {
+        userTestMapper.insertUserDTOList(addUserDTOList);
+    }
+
+    @Override
     @DataSource(DataSourceName.SLAVE)
     public List<FetchUserVO> fetchUser(FetchUserDTO addFetchUserDTO) {
         List<UserTest> userTestList = userTestMapper.selectByUserName(addFetchUserDTO.getUsername());
-        return userTestList.stream().map(
-                userTest -> FetchUserVO.builder().
-                        username(userTest.getUsername()).
-                        sex(userTest.getSex()).
-                        birthday(userTest.getBirthday()).
-                        address(userTest.getAddress()).build()).collect(Collectors.toList());
+        return userTestList.stream().map(userTest -> FetchUserVO.builder().username(userTest.getUsername()).sex(userTest.getSex()).birthday(userTest.getBirthday()).address(userTest.getAddress()).build()).collect(Collectors.toList());
     }
 
 

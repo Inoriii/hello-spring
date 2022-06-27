@@ -1,5 +1,6 @@
 package com.inoriii.hello.spring.dao.mapper;
 
+import com.inoriii.hello.spring.api.dto.AddUserDTO;
 import com.inoriii.hello.spring.model.entity.UserTest;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface UserTestMapper {
     int updateByPrimaryKey(UserTest record);
 
     List<UserTest> selectByUserName(String username);
+
+    void insertUserDTOList(List<AddUserDTO> addUserDTOList);
 }

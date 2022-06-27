@@ -26,6 +26,13 @@ public interface TestService {
      */
     void addUser(AddUserDTO addUserDTO);
 
+    /**
+     * 插入测试用户
+     *
+     * @param addUserDTOList
+     */
+    void addUserList(List<AddUserDTO> addUserDTOList);
+
     List<FetchUserVO> fetchUser(FetchUserDTO addFetchUserDTO);
 
     Object getKey(String key);
