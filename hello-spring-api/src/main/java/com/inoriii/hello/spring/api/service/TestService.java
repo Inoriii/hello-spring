@@ -3,6 +3,7 @@ package com.inoriii.hello.spring.api.service;
 import com.inoriii.hello.spring.api.dto.AddUserDTO;
 import com.inoriii.hello.spring.api.dto.FetchUserDTO;
 import com.inoriii.hello.spring.api.vo.FetchUserVO;
+import com.inoriii.hello.spring.api.vo.Pager;
 
 import java.util.List;
 
@@ -36,4 +37,6 @@ public interface TestService {
     List<FetchUserVO> fetchUser(FetchUserDTO addFetchUserDTO);
 
     Object getKey(String key);
+
+    Pager<FetchUserVO> getUserByAddresses(List<String> address, long page, long size);
 }

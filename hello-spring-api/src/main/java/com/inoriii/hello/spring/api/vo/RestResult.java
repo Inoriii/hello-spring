@@ -8,15 +8,23 @@ import lombok.Data;
 @AllArgsConstructor
 public class RestResult<T> {
 
-    //uuid,用作唯一标识符，供序列化和反序列化时检测是否一致
+    /**
+     * uuid,用作唯一标识符，供序列化和反序列化时检测是否一致
+     */
     private static final long serialVersionUID = 7498483649536881777L;
-    //标识代码，0表示成功，非0表示出错
+    /**
+     * 标识代码，0表示成功，非0表示出错
+     */
     private Integer code;
 
-    //提示信息，通常供报错时使用
+    /**
+     * 提示信息，通常供报错时使用
+     */
     private String msg;
 
-    //正常返回时返回的数据
+    /**
+     * 正常返回时返回的数据
+     */
     private T data;
 
     public RestResult() {

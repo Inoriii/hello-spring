@@ -4,6 +4,7 @@ import com.inoriii.hello.spring.api.dto.AddUserDTO;
 import com.inoriii.hello.spring.api.dto.FetchUserDTO;
 import com.inoriii.hello.spring.api.service.TestService;
 import com.inoriii.hello.spring.api.vo.FetchUserVO;
+import com.inoriii.hello.spring.api.vo.Pager;
 import com.inoriii.hello.spring.api.vo.RestResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,13 @@ public class TestController {
     public RestResult<Object> getMemory(@RequestParam String key) {
         Object o = testService.getKey(key);
         return new RestResult<>(o);
+    }
+
+    @GetMapping("/getUserByAddresses")
+    public Pager<FetchUserVO> getUserByAddresses(@RequestParam List<String> address,
+                                                 @RequestParam long page,
+                                                 @RequestParam long size) {
+        return testService.getUserByAddresses(address, page, size);
     }
 }
 

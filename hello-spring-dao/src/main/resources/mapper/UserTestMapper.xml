@@ -25,7 +25,28 @@
     from user_test
     where username = #{username}
   </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectByAddress" resultMap="BaseResultMap">
+    SELECT *
+    FROM user_test
+    <where>
+      <foreach item="address" index="index" collection="addresses"
+               open="address in (" separator="," close=")">
+        #{address}
+      </foreach>
+    </where>
+    limit #{offset} , #{size}
+  </select>
+  <select id="selectByAddressCount" resultType="java.lang.Long">
+    SELECT count(1)
+    FROM user_test
+    <where>
+      <foreach item="address" index="index" collection="addresses"
+               open="address in (" separator="," close=")">
+        #{address}
+      </foreach>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_test
     where id = #{id,jdbcType=INTEGER}
   </delete>

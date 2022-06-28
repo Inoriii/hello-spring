@@ -4,7 +4,9 @@ import com.inoriii.hello.spring.api.dto.AddUserDTO;
 import com.inoriii.hello.spring.api.dto.FetchUserDTO;
 import com.inoriii.hello.spring.api.service.TestService;
 import com.inoriii.hello.spring.api.vo.FetchUserVO;
+import com.inoriii.hello.spring.api.vo.Pager;
 import com.inoriii.hello.spring.common.annotation.DataSource;
+import com.inoriii.hello.spring.common.utils.PagerHelper;
 import com.inoriii.hello.spring.common.utils.TestUtil;
 import com.inoriii.hello.spring.dao.mapper.UserTestMapper;
 import com.inoriii.hello.spring.model.entity.UserTest;
@@ -15,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -63,5 +67,16 @@ public class TestServiceImpl implements TestService {
     @Override
     public Object getKey(String key) {
         return redisService.get(key);
+    }
+
+    @Override
+    @DataSource(DataSourceName.SLAVE)
+    public Pager<FetchUserVO> getUserByAddresses(List<String> address, long page, long size) {
+        long offset = PagerHelper.fetchOffset(page, size);
+        List<UserTest> userTestList = userTestMapper.selectByAddress(address, offset, size);
+        List<FetchUserVO> fetchUserVOList = Optional.ofNullable(userTestList).orElseGet(ArrayList::new).
+                stream().map(userTest -> FetchUserVO.builder().username(userTest.getUsername()).sex(userTest.getSex()).birthday(userTest.getBirthday()).address(userTest.getAddress()).build()).collect(Collectors.toList());
+        long l = userTestMapper.selectByAddressCount(address);
+        return Pager.<FetchUserVO>builder().total(l).page(page).size(size).data(fetchUserVOList).build();
     }
 }
