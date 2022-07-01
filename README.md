@@ -22,8 +22,10 @@
 
 遗留问题
 1.数据库配置主从
+2.Date/time Duration和Period
 
 计划
+定时任务/定时器
 java8相关：函数式编程、Lambda表达式、并发（Concurrency）
 mysql相关：分库分表
 docker:基本使用

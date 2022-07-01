@@ -34,11 +34,11 @@ public class TimeUtil {
         System.out.println("//--------------------------------------------------------------------------------");
         //不含有时区的时间相关类
         System.out.println("不含有时区的时间相关类");
-        //Instant  用来代替时间戳     有年月日时分秒信息     也可以理解成有时区，但只能是UTC+0 GMT+0时区
+        //Instant  时刻   用来代替时间戳     有年月日时分秒信息     也可以理解成有时区(打印时有时区标识)，但只能是UTC+0 GMT+0时区
         Instant instant = Instant.now();
         System.out.println("Instant.now()" + instant);
-        System.out.println("Instant.of" + Instant.ofEpochSecond(1656599684));
-        System.out.println("Instant.of" + Instant.ofEpochMilli(1656599721234L));
+        System.out.println("Instant.of() " + Instant.ofEpochSecond(1656599684));
+        System.out.println("Instant.of() " + Instant.ofEpochMilli(1656599721234L));
 
         //LocalDateTime 有年月日时分秒信息     不含有时区   体现在打印没有表示时区的后缀
         //LocalDate,LocalTime 与LocalDateTime同理
@@ -46,8 +46,8 @@ public class TimeUtil {
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
         System.out.println("LocalDateTime.now()" + localDateTime);
-        System.out.println("LocalDateTime.of()" + LocalDateTime.ofInstant(instant, hawaii));
-        System.out.println("LocalDateTime.of()" + LocalDateTime.ofEpochSecond(1656599684, 0, ZoneOffset.UTC));
+        System.out.println("LocalDateTime.of()" + LocalDateTime.ofInstant(instant, beijing));
+        System.out.println("LocalDateTime.of()有时区问题" + LocalDateTime.ofEpochSecond(1656599684, 0, ZoneOffset.UTC));
         System.out.println("LocalDateTime.of()" + LocalDateTime.of(2022, 6, 29, 0, 0, 0));
         System.out.println("LocalDate,LocalTime 与LocalDateTime同理" + localDate + localTime);
 
@@ -76,12 +76,24 @@ public class TimeUtil {
 
         //LocalDateTime,ZonedDateTime常用时间操作,二者共同的操作
         System.out.println("LocalDateTime,ZonedDateTime常用时间操作,二者共同的操作");
+
+        System.out.println("获取时间戳(秒): " + localDateTime.toInstant(ZoneOffset.UTC));
+
         System.out.println("取日期" + localDateTime.getDayOfMonth());
         System.out.println("取日期加" + localDateTime.plusDays(1));
         System.out.println("取日期减" + localDateTime.minusDays(1));
 
         System.out.println("调整日期（时分秒不变）" + zonedDateTime.withDayOfMonth(1));
         System.out.println("调整日期（时分秒不变）" + zonedDateTime.withDayOfYear(1));
+
+        System.out.println("日期比大小" + localDateTime.isAfter(localDateTime.plusDays(1)));
+        System.out.println("计算时差");
+        Duration duration = Duration.between(localDateTime, localDateTime.plus(10, ChronoUnit.HOURS).plus(20, ChronoUnit.MINUTES));
+        System.out.println("计算时差相差天" + duration.toDays());
+        System.out.println("计算时差相小时" + duration.toHours());
+        System.out.println("计算时差相分钟" + duration.toMinutes());
+        System.out.println("计算时差格式化" + format(duration));
+        System.out.println("当天3点" + localDate.atTime(LocalTime.of(3, 0, 0)));
 
         //LocalDate常用时间操作
         System.out.println("LocalDate常用时间操作");
@@ -94,6 +106,7 @@ public class TimeUtil {
         System.out.println("下一个周一:" + localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY)));
         System.out.println("上一个周一:" + localDate.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)));
         System.out.println("当天0点:" + localDate.atStartOfDay());
+        System.out.println("是否是闰年:" + localDate.isLeapYear());
         System.out.println("//--------------------------------------------------------------------------------");
 
         //DateTimeFormatter,用于【格式化时间为字符串】或【转字符串为时间】
@@ -102,11 +115,12 @@ public class TimeUtil {
 
         //时间格式转字符串格式 dateTimeFormatter.format或者DateTime.format都行
         System.out.println("时间转字符串(Formatter.format):" + dateTimeFormatter.format(localDateTime));
-        System.out.println("时间转字符串(DateTime.format):" + zonedDateTime.format(dateTimeFormatter));
+        //会去掉时区（除非指定显示时区）
+        System.out.println("时间转字符串,会去掉时区(DateTime.format):" + zonedDateTime.format(dateTimeFormatter) + "  " + zonedDateTime);
 
         //字符串转时间
         LocalDateTime parseLocalDateTime = LocalDateTime.parse("2022-06-29T23:41:03");
-        System.out.println("字符串转时间:" + dateTimeFormatter.format(localDateTime));
+        System.out.println("字符串转时间:" + parseLocalDateTime);
 
         //字符串转时间，使用自定义格式
         parseLocalDateTime = LocalDateTime.parse("2022-06-29 03:41:03", dateTimeFormatter);
@@ -115,5 +129,16 @@ public class TimeUtil {
         System.out.println("夏威夷时区" + zonedDateTime);
         zonedDateTime = zonedDateTime.withZoneSameInstant(beijing);
         System.out.println("夏威夷转北京时区" + zonedDateTime);
+    }
+
+    public static String format(Duration duration) {
+        long seconds = duration.getSeconds();
+        long absSeconds = Math.abs(seconds);
+        String positive = String.format(
+                "%d:%02d:%02d",
+                absSeconds / 3600,
+                (absSeconds % 3600) / 60,
+                absSeconds % 60);
+        return seconds < 0 ? "-" + positive : positive;
     }
 }
