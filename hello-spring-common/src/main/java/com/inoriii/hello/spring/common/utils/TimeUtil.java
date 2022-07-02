@@ -80,6 +80,7 @@ public class TimeUtil {
         System.out.println("获取时间戳(秒): " + localDateTime.toInstant(ZoneOffset.UTC));
 
         System.out.println("取日期" + localDateTime.getDayOfMonth());
+        System.out.println("取星期" + localDateTime.getDayOfWeek());
         System.out.println("取日期加" + localDateTime.plusDays(1));
         System.out.println("取日期减" + localDateTime.minusDays(1));
 
@@ -88,12 +89,17 @@ public class TimeUtil {
 
         System.out.println("日期比大小" + localDateTime.isAfter(localDateTime.plusDays(1)));
         System.out.println("计算时差");
-        Duration duration = Duration.between(localDateTime, localDateTime.plus(10, ChronoUnit.HOURS).plus(20, ChronoUnit.MINUTES));
-        System.out.println("计算时差相差天" + duration.toDays());
-        System.out.println("计算时差相小时" + duration.toHours());
-        System.out.println("计算时差相分钟" + duration.toMinutes());
+        Duration duration = Duration.between(localDateTime, localDateTime
+                .minusWeeks(10).plus(10, ChronoUnit.HOURS).plus(20, ChronoUnit.MINUTES));
+        System.out.println("计算时差,一共相差天(差值全部转化)" + duration.toDays());
+        System.out.println("计算时差,一共相小时(差值全部转化)" + duration.toHours());
+        System.out.println("计算时差,一共相分钟(差值全部转化)" + duration.toMinutes());
         System.out.println("计算时差格式化" + format(duration));
         System.out.println("当天3点" + localDate.atTime(LocalTime.of(3, 0, 0)));
+
+        Period period = Period.between(LocalDate.now(), LocalDate.of(2000, 12, 1));
+        String s = String.format("计算时差相差%d年%02d月%02d日", period.getYears(), period.getMonths(), period.getDays());
+        System.out.println(s);
 
         //LocalDate常用时间操作
         System.out.println("LocalDate常用时间操作");
@@ -103,8 +109,9 @@ public class TimeUtil {
         System.out.println("下月第1天:" + localDate.with(TemporalAdjusters.firstDayOfNextMonth()));
         System.out.println("本月第1个周一:" + localDate.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY)));
         System.out.println("本月第2个周二:" + localDate.with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.TUESDAY)));
-        System.out.println("下一个周一:" + localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY)));
-        System.out.println("上一个周一:" + localDate.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)));
+        System.out.println("本周三:" + localDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).with(TemporalAdjusters.nextOrSame(DayOfWeek.WEDNESDAY)));
+        System.out.println("下一个周一(不算今天否则加上OrSame):" + localDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY)));
+        System.out.println("上一个周一(不算今天否则加上OrSame):" + localDate.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)));
         System.out.println("当天0点:" + localDate.atStartOfDay());
         System.out.println("是否是闰年:" + localDate.isLeapYear());
         System.out.println("//--------------------------------------------------------------------------------");
