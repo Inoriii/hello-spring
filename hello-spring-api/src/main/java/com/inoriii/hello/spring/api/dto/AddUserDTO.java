@@ -3,7 +3,7 @@ package com.inoriii.hello.spring.api.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author sakura
@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 public class AddUserDTO {
     private String username;
-    private Date birthday;
+    private LocalDate birthday;
     private String sex;
     private String address;
 }

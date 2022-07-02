@@ -29,7 +29,7 @@ public class TestController {
     }
 
     @PostMapping("/add/test-user")
-    public String addUser(@RequestBody AddUserDTO addUserDTO) {
+    public String addUser(@RequestBody(required = false) AddUserDTO addUserDTO) {
         testService.addUser(addUserDTO);
         return addUserDTO.toString();
     }

@@ -3,7 +3,8 @@ package com.inoriii.hello.spring.model.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * user_test
@@ -22,7 +23,7 @@ public class UserTest implements Serializable {
     /**
      * 生日
      */
-    private Date birthday;
+    private LocalDate birthday;
 
     /**
      * 性别
@@ -34,9 +35,9 @@ public class UserTest implements Serializable {
      */
     private String address;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     private static final long serialVersionUID = 1L;
 }

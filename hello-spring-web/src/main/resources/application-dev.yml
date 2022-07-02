@@ -8,12 +8,12 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       master:
-        url: jdbc:mysql://localhost:3306/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        url: jdbc:mysql://localhost:3306/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
         username: inoriii
         password: 2014212447
         driver-class-name: com.mysql.cj.jdbc.Driver
       slave:
-        url: jdbc:mysql://localhost:3306/hello_spring_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        url: jdbc:mysql://localhost:3306/hello_spring_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
         username: inoriii
         password: 2014212447
         driver-class-name: com.mysql.cj.jdbc.Driver

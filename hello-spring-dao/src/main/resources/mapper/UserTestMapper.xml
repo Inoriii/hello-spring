@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.inoriii.hello.spring.model.entity.UserTest">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -54,7 +54,7 @@
     insert into user_test (username, birthday, sex, 
       address, create_time, update_time
       )
-    values (#{username,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=CHAR}, 
+    values (#{username,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{sex,jdbcType=CHAR},
       #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -85,7 +85,7 @@
         #{username,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
-        #{birthday,jdbcType=TIMESTAMP},
+        #{birthday,jdbcType=DATE},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=CHAR},
@@ -114,7 +114,7 @@
         username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null">
-        birthday = #{birthday,jdbcType=TIMESTAMP},
+        birthday = #{birthday,jdbcType=DATE},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=CHAR},
@@ -134,7 +134,7 @@
   <update id="updateByPrimaryKey" parameterType="com.inoriii.hello.spring.model.entity.UserTest">
     update user_test
     set username = #{username,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=TIMESTAMP},
+      birthday = #{birthday,jdbcType=DATE},
       sex = #{sex,jdbcType=CHAR},
       address = #{address,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
