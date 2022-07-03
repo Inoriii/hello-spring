@@ -1,6 +1,7 @@
 package com.inoriii.hello.spring.web.aspect;
 
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -57,7 +58,7 @@ public class ControllerLogAspect {
     }
 
     @AfterThrowing(pointcut = "requestServer()", throwing = "e")
-    public void doAfterThrow(JoinPoint joinPoint, RuntimeException e) {
+    public void doAfterThrow(JoinPoint joinPoint, RuntimeException e) throws JsonProcessingException {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String logString = "\n" +
@@ -70,7 +71,7 @@ public class ControllerLogAspect {
             logString += "|Request Params     : " + getRequestParamsByProceedingJoinPoint(joinPoint) + "\n";
         }
         log.error(logString + "{}\n" +
-                "*********************************End*********************************" + "\n", JSON.toJSONString(e));
+                "*********************************End*********************************" + "\n", new ObjectMapper().writeValueAsString(e));
     }
 
 
