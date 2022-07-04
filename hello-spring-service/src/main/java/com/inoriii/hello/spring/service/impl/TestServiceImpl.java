@@ -1,4 +1,4 @@
-package com.inoriii.hello.spring.service;
+package com.inoriii.hello.spring.service.impl;
 
 import com.inoriii.hello.spring.api.dto.AddUserDTO;
 import com.inoriii.hello.spring.api.dto.FetchUserDTO;
@@ -11,6 +11,7 @@ import com.inoriii.hello.spring.common.utils.TestUtil;
 import com.inoriii.hello.spring.dao.mapper.UserTestMapper;
 import com.inoriii.hello.spring.model.entity.UserTest;
 import com.inoriii.hello.spring.model.enums.DataSourceName;
+import com.inoriii.hello.spring.service.RedisService;
 import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
