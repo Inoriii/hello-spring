@@ -1,7 +1,6 @@
 package com.inoriii.hello.spring.service.scheduled;
 
 import lombok.extern.java.Log;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

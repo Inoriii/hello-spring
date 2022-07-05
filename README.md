@@ -25,6 +25,7 @@
 遗留问题
 1.数据库配置主从
 2.cron表达式
+3.docker网络
 
 计划
 java8相关：函数式编程、Lambda表达式、并发（Concurrency）
