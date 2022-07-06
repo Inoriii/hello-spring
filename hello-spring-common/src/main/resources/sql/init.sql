@@ -1,5 +1,9 @@
-DROP TABLE IF EXISTS `user_test`;
-CREATE TABLE `user_test`
+CREATE DATABASE hello_spring CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
+
+CREATE USER 'master'@'%' IDENTIFIED BY '123456';
+GRANT All privileges ON hello_spring.* TO 'master'@'%';
+
+CREATE TABLE hello_spring.`user_test`
 (
     `id`          int(11)                                                 NOT NULL AUTO_INCREMENT,
     `username`    varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  NOT NULL COMMENT '用户名称',

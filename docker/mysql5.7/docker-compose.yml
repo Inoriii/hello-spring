@@ -1,0 +1,47 @@
+version: '3'
+services:
+  mysql-master:
+    image: mysql:5.7
+    container_name: mysql-master
+    networks:
+      mysql:
+        ipv4_address: "173.18.32.2"
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    volumes:
+      - ./master/data:/var/lib/mysql
+      - ./master/init:/docker-entrypoint-initdb.d/
+    command:
+      - "--server-id=1"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--log-bin=mysql-bin"
+      - "--binlog-ignore-db=mysql"
+      - "--binlog_format=row"
+  mysql-slave:
+    image: mysql:5.7
+    container_name: mysql-slave
+    networks:
+      mysql:
+        ipv4_address: "173.18.32.3"
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    volumes:
+      - ./slave/data:/var/lib/mysql
+      - ./slave/init:/docker-entrypoint-initdb.d/
+    command:
+      - "--server-id=2"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--relay_log=replicas-mysql-relay-bin"
+      - "--log_slave_updates=1"
+networks:
+  mysql:
+    ipam:
+      config:
+        - subnet: "173.18.32.0/12"
+          gateway: "173.18.32.1"

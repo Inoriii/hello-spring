@@ -1,0 +1,1 @@
+GRANT replication slave ON *.* TO 'slave'@'%' IDENTIFIED BY '123456';

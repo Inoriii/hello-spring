@@ -1,5 +1,10 @@
 # hello-spring
 
+使用：
+docker执行mysql
+
+功能
+
 1.多模块拆分,使用maven profile管理多环境
 
 2.引入依赖
@@ -23,7 +28,7 @@
 10.定时任务/定时器
 
 遗留问题
-1.数据库配置主从
+1.docker数据库配置主从使用分配IP
 2.cron表达式
 3.docker网络
 
