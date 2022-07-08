@@ -1,7 +1,7 @@
 # hello-spring
 
 使用：
-docker执行mysql
+docker执行mysql5.7下docker-compose
 
 功能
 
@@ -28,9 +28,8 @@ docker执行mysql
 10.定时任务/定时器
 
 遗留问题
-1.docker数据库配置主从使用分配IP
-2.cron表达式
-3.docker网络
+1.cron表达式
+2.docker网络
 
 计划
 java8相关：函数式编程、Lambda表达式、并发（Concurrency）

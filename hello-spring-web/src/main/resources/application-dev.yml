@@ -8,14 +8,14 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       master:
-        url: jdbc:mysql://localhost:3306/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://localhost:3307/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
         username: inoriii
-        password: 2014212447
+        password: 123456
         driver-class-name: com.mysql.cj.jdbc.Driver
       slave:
-        url: jdbc:mysql://localhost:3306/hello_spring_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://localhost:3308/hello_spring?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
         username: inoriii
-        password: 2014212447
+        password: 123456
         driver-class-name: com.mysql.cj.jdbc.Driver
       # 配置初始化大小、最小、最大
       initial-size: 5

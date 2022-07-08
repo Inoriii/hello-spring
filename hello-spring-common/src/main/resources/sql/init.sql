@@ -1,7 +1,7 @@
 CREATE DATABASE hello_spring CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
 
-CREATE USER 'master'@'%' IDENTIFIED BY '123456';
-GRANT All privileges ON hello_spring.* TO 'master'@'%';
+CREATE USER 'inoriii'@'%' IDENTIFIED BY '123456';
+GRANT All privileges ON hello_spring.* TO 'inoriii'@'%';
 
 CREATE TABLE hello_spring.`user_test`
 (
