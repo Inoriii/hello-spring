@@ -1,5 +1,4 @@
-package com.inoriii.hello.spring.common.utils;
-
+package com.inoriii.hello.spring.time;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +10,7 @@ import java.time.temporal.TemporalAdjusters;
  * @date: 2022/6/29 22:14
  * @description:
  */
-public class TimeUtil {
+public class TimeTest {
     /**
      * 中国标准时间(China Standard Time) CST  UTC+8 GMT+8
      * UT   Universal Time 世界时。根据原子钟计算出来的时间。
