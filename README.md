@@ -25,7 +25,7 @@ docker执行mysql5.7下docker-compose
 
 9.java8相关 Date/time API
 
-10.定时任务/定时器
+10.定时任务/定时器（多种常用corn表达式举例）
 
 遗留问题
 1.cron表达式
