@@ -28,8 +28,7 @@ docker执行mysql5.7下docker-compose
 10.定时任务/定时器（多种常用corn表达式举例）
 
 遗留问题
-1.cron表达式
-2.docker网络
+1.docker网络
 
 计划
 java8相关：函数式编程、Lambda表达式、并发（Concurrency）
