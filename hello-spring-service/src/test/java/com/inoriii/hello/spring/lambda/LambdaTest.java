@@ -34,6 +34,19 @@ public class LambdaTest {
         return sum.sum(a, b);
     }
 
+    @FunctionalInterface
+    public interface Divided {
+        int divided(LambdaTest a, LambdaTest b);
+    }
+
+    public int divided(LambdaTest arg) {
+        return arg.i / i;
+    }
+
+    public int compute(LambdaTest a, LambdaTest b, Divided divided) {
+        return divided.divided(a, b);
+    }
+
     public static void main(String[] args) {
         //1、有接口
         //2、有相同参数列表
@@ -45,5 +58,16 @@ public class LambdaTest {
         int mult = lambdaTest.compute(1, 2, (a, b) -> a * b);
 
         System.out.println("add: " + add + "\nsub: " + sub + "\nmult: " + mult);
+        System.out.println();
+        //4、当函数式方法作为接口实现类时，有一种情况可以违背第三条，即参数列表可以不同，准确来说是少一个参数
+        //这种情况是函数式方法是这个函数式方法对象，调用方第一个参数代替参数列表中this指代的第一个参数
+        int compute = lambdaTest.compute(new LambdaTest() {{
+            i = 5;
+        }}, new LambdaTest() {{
+            i = 6;
+        }}, LambdaTest::divided);
+        //6/5=1
+        System.out.println("compute: " + compute);
     }
+
 }

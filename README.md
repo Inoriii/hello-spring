@@ -23,7 +23,7 @@ docker执行mysql5.7下docker-compose
 使用maven-assembly-plugin插件将bin目录、jar包、yml打包至根目录；
 运行 jar 包读取外部配置文件(默认：相同目录下的配置文件优先级要高于jar包中的配置文件。)
 
-9.java8相关 Date/time API
+9.java8相关 Date/time API、函数式编程、Lambda表达式
 
 10.定时任务/定时器（多种常用corn表达式举例）
 
@@ -31,7 +31,7 @@ docker执行mysql5.7下docker-compose
 1.docker网络
 
 计划
-java8相关：函数式编程、Lambda表达式、并发（Concurrency）
+java8相关：并发（Concurrency）
 mysql相关：分库分表
 docker:基本使用
 redis
