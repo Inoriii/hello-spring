@@ -1,11 +1,11 @@
-package com.inoriii.hello.spring.lambda;
+package com.inoriii.hello.spring.lambda.test1;
 
 /**
  * @author sakura
  * @date: 2022/7/14 19:16
  * @description:
  */
-public class Test {
+public class ServiceA {
     int i = 0;
 
     public int getI() {
@@ -16,7 +16,11 @@ public class Test {
         this.i = i;
     }
 
-    int test(Test b) {
+    int process(ServiceB b) {
+        return i - b.i;
+    }
+
+    int process(ServiceA serviceImpl1, ServiceB b) {
         return i - b.i;
     }
 }
