@@ -27,6 +27,9 @@ docker执行mysql5.7下docker-compose
 
 10.定时任务/定时器（多种常用corn表达式举例）
 
+11.使用参数校验
+
+
 遗留问题
 1.docker网络
 

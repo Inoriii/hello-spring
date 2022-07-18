@@ -7,6 +7,7 @@ import com.inoriii.hello.spring.api.vo.FetchUserVO;
 import com.inoriii.hello.spring.api.vo.Pager;
 import com.inoriii.hello.spring.api.vo.RestResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class TestController {
     }
 
     @PostMapping("/add/test-user")
-    public String addUser(@RequestBody(required = false) AddUserDTO addUserDTO) {
+    public String addUser(@RequestBody @Validated AddUserDTO addUserDTO) {
         testService.addUser(addUserDTO);
         return addUserDTO.toString();
     }
@@ -53,9 +54,7 @@ public class TestController {
     }
 
     @GetMapping("/getUserByAddresses")
-    public Pager<FetchUserVO> getUserByAddresses(@RequestParam List<String> address,
-                                                 @RequestParam long page,
-                                                 @RequestParam long size) {
+    public Pager<FetchUserVO> getUserByAddresses(@RequestParam List<String> address, @RequestParam long page, @RequestParam long size) {
         return testService.getUserByAddresses(address, page, size);
     }
 }

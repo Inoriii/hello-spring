@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -54,6 +57,13 @@ public class GlobalExceptionHandler {
         List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
         String message = allErrors.stream().map(s -> s.getDefaultMessage()).collect(Collectors.joining(";"));
         return new RestResult<>(ResponseCode.FAIL.getCode(), message, null);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public RestResult<Object> constraintViolationExceptionHandler(ConstraintViolationException e) {
+        Set<ConstraintViolation<?>> allErrors = e.getConstraintViolations();
+        String message = allErrors.stream().map(o -> o.getMessage()).collect(Collectors.joining(";"));
+        return new RestResult(ResponseCode.FAIL.getCode(), message, null);
     }
 
     /**

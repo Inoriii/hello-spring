@@ -3,6 +3,8 @@ package com.inoriii.hello.spring.api.dto;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /**
@@ -13,8 +15,12 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class AddUserDTO {
+    @NotBlank(message = "username不能为空")
     private String username;
+    @NotNull(message = "birthday不能为空")
     private LocalDate birthday;
+    @NotBlank(message = "sex不能为空")
     private String sex;
+    @NotBlank(message = "address不能为空")
     private String address;
 }
