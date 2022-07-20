@@ -38,31 +38,18 @@ public class GlobalExceptionHandler {
      * ConstraintViolationException：
      * Content-Type: application/x-www-form-urlencoded 单参数校验
      */
-    public static final Map<Class<? extends Exception>, Function<Exception, String>> VALIDATION_ERROR_MAP =
-            new ConcurrentHashMap<Class<? extends Exception>, Function<Exception, String>>(8) {{
-                put(ConstraintViolationException.class,
-                        k -> ((ConstraintViolationException) k).getConstraintViolations().stream()
-                                .map(ConstraintViolation::getMessage)
-                                .collect(Collectors.joining("; ")));
-                put(MethodArgumentNotValidException.class,
-                        k -> ((MethodArgumentNotValidException) k).getBindingResult().getAllErrors().stream()
-                                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                                .collect(Collectors.joining("; ")));
-                put(BindException.class,
-                        k -> ((BindException) k).getAllErrors().stream()
-                                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                                .collect(Collectors.joining("; ")));
-            }};
+    public static final Map<Class<? extends Exception>, Function<Exception, String>> VALIDATION_ERROR_MAP = new ConcurrentHashMap<Class<? extends Exception>, Function<Exception, String>>(8) {{
+        put(ConstraintViolationException.class, k -> ((ConstraintViolationException) k).getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining("; ")));
+        put(MethodArgumentNotValidException.class, k -> ((MethodArgumentNotValidException) k).getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining("; ")));
+        put(BindException.class, k -> ((BindException) k).getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining("; ")));
+    }};
 
-    @ExceptionHandler(value = {
-            ConstraintViolationException.class,
-            MethodArgumentNotValidException.class,
-            BindException.class})
+    @ExceptionHandler(value = {ConstraintViolationException.class, MethodArgumentNotValidException.class, BindException.class})
     @ResponseBody
     public RestResult<Object> handleMissingServletRequestParameterException(Exception e) {
         AtomicReference<String> message = new AtomicReference<>("参数错误");
         VALIDATION_ERROR_MAP.forEach((key, value) -> {
-            if (e.getClass().isAssignableFrom(key)) {
+            if (key.isAssignableFrom(e.getClass())) {
                 message.set(value.apply(e));
             }
         });

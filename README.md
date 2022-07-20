@@ -32,11 +32,12 @@ docker执行mysql5.7下docker-compose
 
 遗留问题
 1.docker网络
+2.validation验证get请求
 
 计划
 java8相关：并发（Concurrency）
-mysql相关：分库分表
+mysql相关：分库分表，事务
 docker:基本使用
-redis
+redis：锁
 
 web3
