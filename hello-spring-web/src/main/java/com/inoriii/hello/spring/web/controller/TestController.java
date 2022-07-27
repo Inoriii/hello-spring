@@ -3,6 +3,8 @@ package com.inoriii.hello.spring.web.controller;
 import com.inoriii.hello.spring.api.dto.AddUserDTO;
 import com.inoriii.hello.spring.api.dto.FetchUserDTO;
 import com.inoriii.hello.spring.api.service.TestService;
+import com.inoriii.hello.spring.api.service.UserService;
+import com.inoriii.hello.spring.api.vo.FetchUserRoleVO;
 import com.inoriii.hello.spring.api.vo.FetchUserVO;
 import com.inoriii.hello.spring.api.vo.Pager;
 import com.inoriii.hello.spring.api.vo.RestResult;
@@ -22,6 +24,8 @@ import java.util.List;
 public class TestController {
     @Autowired
     private TestService testService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/print/message")
     public String printMessage(@RequestParam String message) {
@@ -56,6 +60,11 @@ public class TestController {
     @GetMapping("/getUserByAddresses")
     public Pager<FetchUserVO> getUserByAddresses(@RequestParam List<String> address, @RequestParam long page, @RequestParam long size) {
         return testService.getUserByAddresses(address, page, size);
+    }
+
+    @GetMapping("/fetchUserRoleVO")
+    public FetchUserRoleVO fetchUserRoleVO() {
+        return userService.fetchUserRoleVO("inoriii");
     }
 }
 

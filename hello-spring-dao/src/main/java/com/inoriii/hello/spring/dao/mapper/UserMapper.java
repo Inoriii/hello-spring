@@ -1,5 +1,6 @@
 package com.inoriii.hello.spring.dao.mapper;
 
+import com.inoriii.hello.spring.api.vo.FetchUserRoleVO;
 import com.inoriii.hello.spring.model.entity.User;
 
 public interface UserMapper {
@@ -14,4 +15,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    FetchUserRoleVO selectFetchUserRoleVOByUsername(String username);
 }

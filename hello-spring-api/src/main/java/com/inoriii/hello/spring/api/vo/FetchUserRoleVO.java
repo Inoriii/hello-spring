@@ -1,6 +1,5 @@
 package com.inoriii.hello.spring.api.vo;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
  * @description:
  */
 @Data
-@Builder
 public class FetchUserRoleVO {
     /**
      * 用户id
@@ -28,11 +26,10 @@ public class FetchUserRoleVO {
     /**
      * 用户密码
      */
-    private List<FetchRoleVO> roleList;
+    private List<RoleVO> roleList;
 
     @Data
-    @Builder
-    public static class FetchRoleVO {
+    public static class RoleVO {
 
         /**
          * 权限id

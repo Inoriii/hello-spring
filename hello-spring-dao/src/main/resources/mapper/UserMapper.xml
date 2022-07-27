@@ -9,23 +9,44 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+    <resultMap id="FetchUserRoleVOMap" type="com.inoriii.hello.spring.api.vo.FetchUserRoleVO">
+        <id column="id" jdbcType="INTEGER" property="userId"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <collection property="roleList"
+                    ofType="com.inoriii.hello.spring.api.vo.FetchUserRoleVO$RoleVO">
+            <result column="rid" jdbcType="INTEGER" property="roleId"/>
+            <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        </collection>
+    </resultMap>
   <sql id="Base_Column_List">
     id, username, `password`, enabled, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectFetchUserRoleVOByUsername" resultMap="FetchUserRoleVOMap">
+        select u.id,
+               u.username,
+               u.password,
+               r.id as rid,
+               r.role_name
+        from user u
+                 left join user_role ur on u.id = ur.user_id
+                 left join role r on ur.role_id = r.id
+        where u.username = #{username,jdbcType=VARCHAR}
+    </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.inoriii.hello.spring.model.entity.User" useGeneratedKeys="true">
-    insert into user (username, `password`, enabled, 
+    insert into user (username, `password`, enabled,
       create_time, update_time)
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{enabled,jdbcType=BOOLEAN}, 
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{enabled,jdbcType=BOOLEAN},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.inoriii.hello.spring.model.entity.User" useGeneratedKeys="true">
