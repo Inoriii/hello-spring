@@ -9,7 +9,7 @@ docker执行mysql5.7下docker-compose
 
 2.引入依赖
 
-3.引入mysql+mybais
+3.引入mysql+mybatis
 
 4.日志
 
@@ -28,6 +28,8 @@ docker执行mysql5.7下docker-compose
 10.定时任务/定时器（多种常用corn表达式举例）
 
 11.使用参数校验
+
+12.spring security
 
 
 遗留问题
