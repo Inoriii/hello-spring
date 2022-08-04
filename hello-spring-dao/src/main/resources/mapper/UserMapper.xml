@@ -18,6 +18,11 @@
             <result column="rid" jdbcType="INTEGER" property="roleId"/>
             <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
         </collection>
+        <collection property="permissionList"
+                    ofType="com.inoriii.hello.spring.api.vo.FetchUserRoleVO$PermissionVO">
+            <result column="pid" jdbcType="INTEGER" property="permissionId"/>
+            <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        </collection>
     </resultMap>
   <sql id="Base_Column_List">
     id, username, `password`, enabled, create_time, update_time
@@ -33,10 +38,14 @@
                u.username,
                u.password,
                r.id as rid,
-               r.role_name
+               r.role_name,
+               p.id as pid,
+               p.permission_name
         from user u
                  left join user_role ur on u.id = ur.user_id
                  left join role r on ur.role_id = r.id
+                 left join role_permission rp on r.id = rp.role_id
+                 left join permission p on rp.permission_id = p.id
         where u.username = #{username,jdbcType=VARCHAR}
     </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

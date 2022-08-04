@@ -6,23 +6,23 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * user_role
+ * role_permission
  *
  * @author
  */
 @Data
-public class UserRole implements Serializable {
+public class RolePermission implements Serializable {
     private Integer id;
 
     /**
      * 用户id
      */
-    private Integer userId;
+    private Integer roleId;
 
     /**
-     * 角色id
+     * 权限id
      */
-    private Integer roleId;
+    private Integer permissionId;
 
     private LocalDateTime createTime;
 

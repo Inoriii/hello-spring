@@ -24,9 +24,13 @@ public class FetchUserRoleVO {
      */
     private String password;
     /**
-     * 用户密码
+     * 用户角色
      */
     private List<RoleVO> roleList;
+    /**
+     * 用户权限
+     */
+    private List<PermissionVO> permissionList;
 
     @Data
     public static class RoleVO {
@@ -39,5 +43,18 @@ public class FetchUserRoleVO {
          * 权限名称
          */
         private String roleName;
+    }
+
+    @Data
+    public static class PermissionVO {
+
+        /**
+         * 权限id
+         */
+        private Integer permissionId;
+        /**
+         * 权限名称
+         */
+        private String permissionName;
     }
 }

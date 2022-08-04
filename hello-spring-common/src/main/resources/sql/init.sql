@@ -37,7 +37,7 @@ CREATE TABLE hello_spring.`user`
 CREATE TABLE hello_spring.`role`
 (
     `id`          int(11)                                                NOT NULL AUTO_INCREMENT,
-    `role_name`   varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限名称',
+    `role_name`   varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
     `enabled`     boolean                                                NOT NULL DEFAULT TRUE COMMENT '是否可用',
     `create_time` datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `update_time` datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
@@ -52,9 +52,37 @@ CREATE TABLE hello_spring.`user_role`
 (
     `id`          int(11)     NOT NULL AUTO_INCREMENT,
     `user_id`     int(11)     NOT NULL COMMENT '用户id',
-    `role_id`     int(11)     NOT NULL COMMENT '权限id',
+    `role_id`     int(11)     NOT NULL COMMENT '角色id',
     `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 500001
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic;
+
+CREATE TABLE hello_spring.`permission`
+(
+    `id`              int(11)                                                NOT NULL AUTO_INCREMENT,
+    `permission_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限名称',
+    `enabled`         boolean                                                NOT NULL DEFAULT TRUE COMMENT '是否可用',
+    `create_time`     datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `update_time`     datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 500001
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic;
+
+CREATE TABLE hello_spring.`role_permission`
+(
+    `id`            int(11)     NOT NULL AUTO_INCREMENT,
+    `role_id`       int(11)     NOT NULL COMMENT '用户id',
+    `permission_id` int(11)     NOT NULL COMMENT '权限id',
+    `create_time`   datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `update_time`   datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 500001
