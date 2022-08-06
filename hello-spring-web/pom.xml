@@ -30,21 +30,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -64,8 +49,8 @@
                     <include>application.yml</include>
                     <include>application-${env}.yml</include>
                 </includes>
-                <!--                解析profile中properties，必须设置为true，且必须先排除application.yml再引入application.yml才会解析-->
-                <!--                再idea中切换激活profile，需要reload一下-->
+                <!--解析profile中properties，必须设置为true，且必须先排除application.yml再引入application.yml才会解析-->
+                <!--再idea中切换激活profile，需要reload一下-->
                 <filtering>true</filtering>
             </resource>
         </resources>

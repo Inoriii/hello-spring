@@ -9,7 +9,8 @@ public enum ResponseCode {
     /**
      * SUCCESS,FAIL
      */
-    SUCCESS(0, "成功"), FAIL(-1, "系统异常");
+    SUCCESS(0, "成功"), FAIL(-1, "系统异常"),
+    JWT_FAIL(-101, "JWT转换异常"), JWT_VALID_FAIL(-102, "JWT签名校验异常"), JWT_TIMEOUT_FAIL(-103, "JWT认证过期");
 
     private Integer code;
     private String msg;

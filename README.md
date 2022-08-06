@@ -29,8 +29,7 @@ docker执行mysql5.7下docker-compose
 
 11.使用参数校验
 
-12.spring security  + RBAC权限模型
-
+12.spring security + RBAC权限模型
 
 遗留问题
 1.docker网络
@@ -38,8 +37,9 @@ docker执行mysql5.7下docker-compose
 
 计划
 java8相关：并发（Concurrency）
-mysql相关：分库分表，事务
+mysql相关：分库分表，事务,超时（异常配置）
 docker:基本使用
 redis：锁
+netty
 
 web3
