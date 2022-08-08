@@ -1,6 +1,6 @@
 package com.inoriii.hello.spring.api.vo;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -9,7 +9,8 @@ import lombok.Data;
  * @description:
  */
 @Data
-@AllArgsConstructor
-public class JwtUserVO {
+@Builder
+public class BaseJwtUserVO {
     private Integer userId;
+    private String name;
 }
