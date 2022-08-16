@@ -58,17 +58,26 @@ public class SecurityConfig {
         };
     }
 
+
+    /**
+     * 修改默认的httpSecurity
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.
-                authorizeRequests().
-                anyRequest().authenticated().
-                and().
-                //默认表单
-                        formLogin();
+        http.authorizeRequests().
+//                mvcMatchers("/login.html").permitAll().
+        anyRequest().authenticated().and().formLogin()
+//                .loginPage("/login.html").loginProcessingUrl("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/index.html").failureForwardUrl("/login.html").
+//                and().
+//                logout().logoutUrl("/logout").
+//                and().csrf().disable()
+        ;
         return http.build();
     }
 
+    /**
+     * 另一条DefaultSecurityFilterChain（自定义）
+     */
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().antMatchers(HttpMethod.GET);
