@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
     public FetchUserRoleVO fetchUserRoleVO(String username) {
         return userMapper.selectFetchUserRoleVOByUsername(username);
     }
+
+    @Override
+    public int updateUserPassword(String username, String password) {
+        return userMapper.updatePasswordByUserName(username, password);
+    }
 }

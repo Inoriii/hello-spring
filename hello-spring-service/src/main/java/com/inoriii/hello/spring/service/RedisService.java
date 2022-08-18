@@ -122,7 +122,7 @@ public class RedisService {
      * @param key
      * @return
      */
-    public boolean exists(final String key) {
+    public <K> boolean exists(final K key) {
         return redisTemplate.hasKey(key);
     }
 
@@ -132,11 +132,9 @@ public class RedisService {
      * @param key
      * @return
      */
-    public Object get(final String key) {
-        Object result = null;
-        ValueOperations<Serializable, Object> operations = redisTemplate.opsForValue();
-        result = operations.get(key);
-        return result;
+    public <V> V get(final String key) {
+        ValueOperations<String, V> operations = redisTemplate.opsForValue();
+        return operations.get(key);
     }
 
     /**

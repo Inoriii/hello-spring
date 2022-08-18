@@ -10,8 +10,18 @@ import com.inoriii.hello.spring.api.vo.FetchUserRoleVO;
 public interface UserService {
     /**
      * 根据username查询权限信息
+     *
      * @param username username
      * @return FetchUserRoleVO
      */
     FetchUserRoleVO fetchUserRoleVO(String username);
+
+    /**
+     * 更新密码
+     *
+     * @param username username
+     * @param password password
+     * @return
+     */
+    int updateUserPassword(String username, String password);
 }
