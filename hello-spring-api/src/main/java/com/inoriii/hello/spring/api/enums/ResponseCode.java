@@ -10,7 +10,8 @@ public enum ResponseCode {
      * SUCCESS,FAIL
      */
     SUCCESS(0, "成功"), FAIL(-1, "系统异常"),
-    LOGOUT(-2, "用户已退出"),
+    LOGIN(-2, "登录失败"), UN_LOGIN(-3, "用户未登录"), LOGOUT(-4, "用户已退出"),
+    SESSION_TIME_OUT(-5, "会话超时"), SESSION_INVALIDATED(-6, "会话失效"),
     JWT_FAIL(-101, "JWT异常"),
     JWT_VALID_FAIL(-102, "JWT签名校验异常"), JWT_TIMEOUT_FAIL(-103, "JWT认证过期");
 

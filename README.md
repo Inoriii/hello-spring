@@ -29,7 +29,15 @@ docker执行mysql5.7下docker-compose
 
 11.使用参数校验
 
-12.spring security + RBAC权限模型
+12.spring security 
+RBAC权限模型
+支持前后端分离开发模式
+重写登录过滤器
+csrf token校验
+cors 跨域问题
+rememberMe 持久化，防止客户端session过期
+session  控制单个用户最大连接数、达到最大连接禁止登录
+自定义异常处理
 
 遗留问题
 1.docker网络
