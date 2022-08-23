@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inoriii.hello.spring.dao.mapper.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.inoriii.hello.spring.model.entity.Resource">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="enabled" jdbcType="BOOLEAN" property="enabled" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+    <resultMap id="FetchUserRoleVOMap" type="com.inoriii.hello.spring.api.vo.FetchResourceVO">
+        <id column="id" jdbcType="INTEGER" property="resourceId"/>
+        <result column="url" jdbcType="VARCHAR" property="resourceUrl"/>
+        <collection property="resourceRolePermissionList"
+                    ofType="com.inoriii.hello.spring.api.vo.FetchResourceVO$ResourceRolePermissionVO">
+            <result column="rid" jdbcType="INTEGER" property="roleId"/>
+            <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+            <result column="pid" jdbcType="INTEGER" property="permissionId"/>
+            <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        </collection>
+    </resultMap>
+  <sql id="Base_Column_List">
+    id, url, enabled, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="fetchAllResourceRolePermission" resultMap="FetchUserRoleVOMap">
+        select r.id,
+               r.url,
+               rrp.role_id       rid,
+               rrp.permission_id pid,
+               r2.role_name,
+               p.permission_name
+        from resource r
+                 left join resource_role_permission rrp on r.id = rrp.resource_id
+                 left join role r2 on rrp.role_id = r2.id
+                 left join permission p on rrp.permission_id = p.id
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from resource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.inoriii.hello.spring.model.entity.Resource" useGeneratedKeys="true">
+    insert into resource (url, enabled, create_time,
+      update_time)
+    values (#{url,jdbcType=VARCHAR}, #{enabled,jdbcType=BOOLEAN}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.inoriii.hello.spring.model.entity.Resource" useGeneratedKeys="true">
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="url != null">
+        url,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=BOOLEAN},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inoriii.hello.spring.model.entity.Resource">
+    update resource
+    <set>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=BOOLEAN},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inoriii.hello.spring.model.entity.Resource">
+    update resource
+    set url = #{url,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=BOOLEAN},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

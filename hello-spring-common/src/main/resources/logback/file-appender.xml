@@ -10,7 +10,7 @@
             <charset>UTF-8</charset>
         </encoder>
         <!-- 定义日志文件名称 -->
-        <file>${log.path}info.log</file>
+        <file>${log.path}${log.file.prefix}info.log</file>
         <!-- 此日志文件只记录info级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <!-- 被过滤的日志级别 -->
@@ -22,7 +22,7 @@
         </filter>
         <!-- 文件回滚策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${log.path}/info_%d{yyyy年MM月dd日 HH时}_%i.gz</fileNamePattern>
+            <fileNamePattern>${log.path}/${log.file.prefix}info_%d{yyyy年MM月dd日 HH时}_%i.gz</fileNamePattern>
             <maxFileSize>10MB</maxFileSize>
             <!-- 存档-->
             <maxHistory>120</maxHistory>
@@ -39,7 +39,7 @@
             <charset>UTF-8</charset>
         </encoder>
         <!-- 定义日志文件名称 -->
-        <file>${log.path}error.log</file>
+        <file>${log.path}${log.file.prefix}error.log</file>
         <!-- 此日志文件只记录error级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
@@ -48,7 +48,7 @@
         </filter>
         <!-- 文件回滚策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${log.path}/error_%d{yyyy年MM月dd日 HH时}_%i.gz</fileNamePattern>
+            <fileNamePattern>${log.path}/${log.file.prefix}error_%d{yyyy年MM月dd日 HH时}_%i.gz</fileNamePattern>
             <!-- 文件最大 -->
             <maxFileSize>10MB</maxFileSize>
             <!-- 存档-->

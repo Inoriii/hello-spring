@@ -6,34 +6,26 @@ import java.util.List;
 
 /**
  * @author sakura
- * @date: 2022/7/24 21:08
+ * @date: 2022/8/22 23:43
  * @description:
  */
 @Data
-public class FetchUserRoleVO {
+public class FetchResourceVO {
     /**
-     * 用户id
+     * 资源id
      */
-    private Integer userId;
+    private Integer resourceId;
     /**
-     * 用户名称
+     * 资源id
      */
-    private String username;
+    private String resourceUrl;
     /**
-     * 用户密码
+     *
      */
-    private String password;
-    /**
-     * 用户角色
-     */
-    private List<RoleVO> roleList;
-    /**
-     * 用户权限
-     */
-    private List<PermissionVO> permissionList;
+    private List<ResourceRolePermissionVO> resourceRolePermissionList;
 
     @Data
-    public static class RoleVO {
+    public static class ResourceRolePermissionVO {
 
         /**
          * 角色id
@@ -43,11 +35,6 @@ public class FetchUserRoleVO {
          * 角色名称
          */
         private String roleName;
-    }
-
-    @Data
-    public static class PermissionVO {
-
         /**
          * 权限id
          */

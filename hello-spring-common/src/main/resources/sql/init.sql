@@ -14,7 +14,7 @@ CREATE TABLE hello_spring.`user_test`
     `update_time` datetime(0)                                             NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 500001
+  AUTO_INCREMENT = 1
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = Dynamic;
@@ -29,7 +29,7 @@ CREATE TABLE hello_spring.`user`
     `update_time` datetime(0)                                             NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 500001
+  AUTO_INCREMENT = 1
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = Dynamic;
@@ -43,7 +43,7 @@ CREATE TABLE hello_spring.`role`
     `update_time` datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 500001
+  AUTO_INCREMENT = 1
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = Dynamic;
@@ -57,7 +57,7 @@ CREATE TABLE hello_spring.`user_role`
     `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 500001
+  AUTO_INCREMENT = 1
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = Dynamic;
@@ -71,7 +71,7 @@ CREATE TABLE hello_spring.`permission`
     `update_time`     datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 500001
+  AUTO_INCREMENT = 1
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = Dynamic;
@@ -79,13 +79,42 @@ CREATE TABLE hello_spring.`permission`
 CREATE TABLE hello_spring.`role_permission`
 (
     `id`            int(11)     NOT NULL AUTO_INCREMENT,
-    `role_id`       int(11)     NOT NULL COMMENT '用户id',
+    `role_id`       int(11)     NOT NULL COMMENT '角色id',
     `permission_id` int(11)     NOT NULL COMMENT '权限id',
     `create_time`   datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `update_time`   datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 500001
+  AUTO_INCREMENT = 1
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic;
+
+CREATE TABLE hello_spring.`resource`
+(
+    `id`          int(11)                                                NOT NULL AUTO_INCREMENT,
+    `url`         varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '资源url',
+    `enabled`     boolean                                                NOT NULL DEFAULT TRUE COMMENT '是否可用',
+    `create_time` datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `update_time` datetime(0)                                            NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic;
+
+CREATE TABLE hello_spring.`resource_role_permission`
+(
+    `id`            int(11)     NOT NULL AUTO_INCREMENT,
+    `resource_id`   int(11)     NOT NULL COMMENT '资源id',
+    `role_id`       int(11) COMMENT '角色id',
+    `permission_id` int(11) COMMENT '权限id',
+    `create_time`   datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `update_time`   datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = Dynamic;
