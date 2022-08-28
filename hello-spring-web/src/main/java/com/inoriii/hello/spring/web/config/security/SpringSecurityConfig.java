@@ -6,19 +6,24 @@ import com.inoriii.hello.spring.api.service.UserService;
 import com.inoriii.hello.spring.api.vo.FetchUserRoleVO;
 import com.inoriii.hello.spring.api.vo.RestResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.access.vote.AbstractAccessDecisionManager;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.config.annotation.web.configurers.UrlAuthorizationConfigurer;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -28,6 +33,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
@@ -46,11 +53,14 @@ import java.util.UUID;
  * @description:
  */
 @EnableWebSecurity(debug = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
-public class SecurityConfig {
+public class SpringSecurityConfig {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private MySecurityMetadataSource mySecurityMetadataSource;
     @Autowired
     private FindByIndexNameSessionRepository<? extends Session> sessionRegistry;
 
@@ -63,12 +73,28 @@ public class SecurityConfig {
                 if (user == null) {
                     throw new UsernameNotFoundException("用户： " + username + " 不存在！");
                 }
-                List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+                List<String> permissionList = new ArrayList<>();
+                List<FetchUserRoleVO.PermissionVO> userPermissionList = user.getPermissionList();
+                if (!CollectionUtils.isEmpty(userPermissionList)) {
+                    for (FetchUserRoleVO.PermissionVO permissionVO : userPermissionList) {
+                        String permissionName = permissionVO.getPermissionName();
+                        if (!StringUtils.hasText(permissionName)) {
+                            continue;
+                        }
+                        permissionList.add(permissionName);
+                    }
+                }
                 List<FetchUserRoleVO.RoleVO> roles = user.getRoleList();
-                roles.forEach(r -> {
-                    grantedAuthorities.add(new SimpleGrantedAuthority(r.getRoleName()));
-                });
-                return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
+                if (!CollectionUtils.isEmpty(roles)) {
+                    for (FetchUserRoleVO.RoleVO roleVO : roles) {
+                        String roleName = roleVO.getRoleName();
+                        if (!StringUtils.hasText(roleName)) {
+                            continue;
+                        }
+                        permissionList.add("ROLE_" + roleName);
+                    }
+                }
+                return User.withUsername(user.getUsername()).password(user.getPassword()).authorities(permissionList.toArray(String[]::new)).build();
             }
         };
     }
@@ -121,10 +147,19 @@ public class SecurityConfig {
      * 修改默认的httpSecurity
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http,
-                                           LoginFilter loginFilter,
-                                           RememberMeServices rememberMeServices) throws Exception {
-        http.authorizeRequests().anyRequest().permitAll();
+    public SecurityFilterChain filterChain(HttpSecurity http, LoginFilter loginFilter, RememberMeServices rememberMeServices) throws Exception {
+        http.apply(new UrlAuthorizationConfigurer(http.getSharedObject(ApplicationContext.class)).withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+            @Override
+            public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+                object.setSecurityMetadataSource(mySecurityMetadataSource);
+                AccessDecisionManager accessDecisionManager = object.getAccessDecisionManager();
+                if (accessDecisionManager instanceof AbstractAccessDecisionManager) {
+                    ((AbstractAccessDecisionManager) accessDecisionManager).getDecisionVoters().add(new MyDecisionVoter());
+                }
+                object.setRejectPublicInvocations(true);
+                return object;
+            }
+        }));
         http.formLogin();
         http.addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class);
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
