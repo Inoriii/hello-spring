@@ -160,7 +160,6 @@ public class SpringSecurityConfig {
                 return object;
             }
         }));
-        http.formLogin();
         http.addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class);
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         http.cors().configurationSource(new UrlBasedCorsConfigurationSource() {
